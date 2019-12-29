@@ -2,10 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import Layout from "../components/Layout";
+import App from '../components/App';
+import styled from 'styled-components';
 
 const Index = props => (
   <Layout>
-    <h1>Batman TV Shows</h1>
+    <S.title>Batman TV Shows</S.title>
     <ul>
       {props.shows.map(show => (
         <li key={show.id}>
@@ -15,6 +17,7 @@ const Index = props => (
         </li>
       ))}
     </ul>
+    <App />
     <style jsx='true'>{`
       h1,
       a {
@@ -52,5 +55,10 @@ Index.getInitialProps = async function() {
     shows: data.map(entry => entry.show)
   };
 };
+
+const S = {};
+S.title = styled.h1`
+  color: gray;
+`
 
 export default Index;
