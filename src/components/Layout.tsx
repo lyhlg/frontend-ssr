@@ -1,19 +1,20 @@
-import React from "react";
+import * as React from 'react';
+
 import Header from './Header';
 
 const layoutStyle = {
   margin: 20,
   padding: 20,
-  border: "1px solid #DDD"
+  border: '1px solid #DDD',
 };
 
-const Layout = props => {
+const Layout: React.SFC = props => {
   return (
     <div style={layoutStyle}>
       <Header />
       {props.children}
     </div>
-  )
-}
+  );
+};
 
 export default Layout;
