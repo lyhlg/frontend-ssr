@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: ['@babel/polyfill', './src/index.js'],
@@ -24,10 +25,15 @@ module.exports = {
           },
         ],
       },
+
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', 'jsx', '.js'],
+    extensions: ['.tsx', '.ts', 'jsx', '.js', '.css'],
   },
   output: {
     filename: 'bundle.js',
@@ -38,5 +44,6 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
     }),
+    new MiniCssExtractPlugin({ filename: 'app.css' }),
   ],
 };

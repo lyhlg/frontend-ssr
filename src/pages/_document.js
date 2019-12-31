@@ -1,16 +1,26 @@
 import React from 'react';
 import NextDocument from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheet as StyledComponentSheets, createGlobalStyle } from 'styled-components';
+// import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/styles';
+import reset from '../styles/reset';
+import custom from '../styles/custom';
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  ${custom}
+`;
 
 export default class Document extends NextDocument {
   static async getInitialProps(ctx) {
-    const sheet = new ServerStyleSheet();
+    const styledComponentSheet = new StyledComponentSheets();
+    // const materialUiSheets = new MaterialUiServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+          enhanceApp: App => props => styledComponentSheet.collectStyles(<App {...props} />),
+          //materialUiSheets.collect()
         });
 
       const initialProps = await NextDocument.getInitialProps(ctx);
@@ -18,13 +28,15 @@ export default class Document extends NextDocument {
         ...initialProps,
         styles: (
           <>
+            <GlobalStyle />
             {initialProps.styles}
-            {sheet.getStyleElement()}
+            {styledComponentSheet.getStyleElement()}
+            {/* {materialUiSheets.getStyleElement()} */}
           </>
         ),
       };
     } finally {
-      sheet.seal();
+      styledComponentSheet.seal();
     }
   }
 }

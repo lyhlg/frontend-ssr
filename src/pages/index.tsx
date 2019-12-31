@@ -1,11 +1,11 @@
 import * as React from 'react';
 import axios from 'axios';
-import Link from 'next/link';
+// import Link from 'next/link';
 import styled from 'styled-components';
 import { NextPage } from 'next';
 
 import Layout from '../components/Layout';
-import App from '../components/App';
+// import App from '../components/App';
 
 interface Props {
   [index: string]: DataDetail;
@@ -25,9 +25,10 @@ interface ServerDatas {
   [index: string]: Data[];
 }
 
-const Index: NextPage<Props> = (props: Props) => (
+const Index: NextPage<Props> = () => (
   <Layout>
-    <Title>Batman TV Shows</Title>
+    <S.Main>Contents</S.Main>
+    {/* <Title>Batman TV Shows</Title>
     <ul>
       {props.shows.map((show: DataDetail) => (
         <li key={show.id}>
@@ -37,33 +38,7 @@ const Index: NextPage<Props> = (props: Props) => (
         </li>
       ))}
     </ul>
-    <App />
-    <style jsx>
-      {`
-        h1,
-        a {
-          font-family: 'Arial';
-        }
-
-        ul {
-          padding: 0;
-        }
-
-        li {
-          list-style: none;
-          margin: 5px 0;
-        }
-
-        a {
-          text-decoration: none;
-          color: blue;
-        }
-
-        a:hover {
-          opacity: 0.6;
-        }
-      `}
-    </style>
+    <App /> */}
   </Layout>
 );
 
@@ -76,8 +51,8 @@ Index.getInitialProps = async (): Promise<Props> => {
   };
 };
 
-const Title = styled.h1`
-  color: gray;
-`;
+const S = {
+  Main: styled.div``,
+};
 
 export default Index;

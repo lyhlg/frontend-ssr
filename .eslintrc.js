@@ -28,7 +28,7 @@ module.exports = {
       //     config: './webpack.config.js',
       // },
       node: {
-        extension: ['.tsx', '.ts', 'jsx', 'js'],
+        extension: ['.tsx', '.ts', 'jsx', 'js', '.css'],
       },
     },
   },

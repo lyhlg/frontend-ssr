@@ -1,25 +1,38 @@
 import React from 'react';
 import Link from 'next/link';
-
-const linkStyle = {
-  marginRight: 15,
-};
+import styled from 'styled-components';
 
 const Header: React.SFC = () => {
   return (
-    <div>
+    <S.Container>
+      <h1>Recipe</h1>
       <Link href="/">
-        <a href="/" style={linkStyle}>
-          Home
-        </a>
+        <a href="/">Home</a>
       </Link>
       <Link href="/about">
-        <a href="/" style={linkStyle}>
-          About
-        </a>
+        <a href="/">About</a>
       </Link>
-    </div>
+    </S.Container>
   );
+};
+
+const S = {
+  Container: styled.div`
+    height: 150px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    a {
+      color: white;
+      margin-left: 1em;
+    }
+  `,
+  Inner: styled.div`
+    width: 100%;
+  `,
 };
 
 export default Header;
